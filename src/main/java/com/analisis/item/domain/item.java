@@ -3,7 +3,7 @@ package com.analisis.item.domain;
 public class item {
     private Integer id;
     private  String name;
-    private Double sale_price;
+    private Double SalePrice;
     private Boolean active;
 
     public item(){
@@ -19,12 +19,12 @@ public class item {
 
     public Double getSale_price() {
 
-        return sale_price;
+        return SalePrice;
     }
 
     public void setSale_price(Double sale_price) {
         if(sale_price >= 0) {
-            this.sale_price = sale_price;
+            this.SalePrice = sale_price;
         }
         else{
             throw new RuntimeException("El precio no puede ser negativo");
@@ -65,7 +65,7 @@ public class item {
         return "item{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", sale_price=" + sale_price +
+                ", sale_price=" + SalePrice +
                 ", active=" + active +
                 '}';
     }
