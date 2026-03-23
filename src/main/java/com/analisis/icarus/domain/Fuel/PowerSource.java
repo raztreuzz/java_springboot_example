@@ -2,6 +2,7 @@ package com.analisis.icarus.domain.Fuel;
 
 public class PowerSource implements Fuel {
 
+    private Integer id;
     private String name;
     private PowerType type;
     private float capacity;
@@ -11,7 +12,8 @@ public class PowerSource implements Fuel {
 
     }
 
-    public PowerSource(String name, PowerType type, float capacity, float efficiency) {
+    public PowerSource(Integer id,String name, PowerType type, float capacity, float efficiency) {
+        this.id = id;
         this.name = name;
         this.type = type;
         this.capacity = capacity;
@@ -19,31 +21,63 @@ public class PowerSource implements Fuel {
 
     }
 
+    public Integer getId() {
+        return id;
+    }
 
-    @Override
-    public String getName() {
-        return "";
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
+    public String getName() {
+        return this.name;
+    }
+
+    public void setType(PowerType type) {
+        this.type = type;
+    }
+
+    public void setCapacity(float capacity) {
+        this.capacity = capacity;
+    }
+
+
+    @Override
     public float getCapacity() {
-        return 0;
+        return capacity;
+    }
+
+    public void setEfficiency(float efficiency) {
+        this.efficiency = efficiency;
     }
 
     @Override
     public float getEfficiency() {
-        return 0;
+        return efficiency;
     }
 
     @Override
     public float getTotalDurationMinutes() {
-        return 0;
+        return capacity*efficiency;
     }
 
     @Override
     public PowerType getType() {
-        return null;
+        return type;
     }
 
-
+    @Override
+    public String toString() {
+        return "PowerSource{" +
+                "name='" + name + '\'' +
+                ", type=" + type +
+                ", capacity=" + capacity +
+                ", efficiency=" + efficiency +
+                '}';
+    }
 }
