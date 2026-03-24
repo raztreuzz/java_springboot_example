@@ -2,6 +2,10 @@ package com.analisis.icarus.domain.Fuel;
 
 public enum PowerType {
 
-    biofuel,
-    electricity,
+    WIND,
+    BIO_GENERATOR,
+    PORTABLE_GENERATOR,
+    WATER_WHEEL,
+    SOLAR,
+
 }

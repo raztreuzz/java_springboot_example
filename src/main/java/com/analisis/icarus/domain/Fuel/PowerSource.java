@@ -5,19 +5,21 @@ public class PowerSource implements Fuel {
     private Integer id;
     private String name;
     private PowerType type;
+    private PowerSourceType source;
     private float capacity;
     private float efficiency;
 
-    public PowerSource() {
-
-    }
-
-    public PowerSource(Integer id,String name, PowerType type, float capacity, float efficiency) {
+    public PowerSource(Integer id, String name, PowerType type, PowerSourceType source, float capacity, float efficiency) {
         this.id = id;
         this.name = name;
         this.type = type;
-        this.capacity = capacity;
-        this.efficiency = efficiency;
+        this.source = source;
+        setCapacity(capacity);
+        setEfficiency(efficiency);
+
+    }
+
+    public PowerSource(){
 
     }
 
@@ -29,31 +31,41 @@ public class PowerSource implements Fuel {
         this.id = id;
     }
 
+    @Override
+    public String getName() {
+        return name;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
 
-    @Override
-    public String getName() {
-        return this.name;
+    public PowerType getType() {
+        return type;
     }
 
     public void setType(PowerType type) {
         this.type = type;
     }
 
-    public void setCapacity(float capacity) {
-        this.capacity = capacity;
+    public PowerSourceType getSource() {
+        return source;
     }
 
+    public void setSource(PowerSourceType source) {
+        this.source = source;
+    }
 
     @Override
     public float getCapacity() {
         return capacity;
     }
 
-    public void setEfficiency(float efficiency) {
-        this.efficiency = efficiency;
+    public void setCapacity(float capacity) {
+        if (capacity <= 0) {
+            throw new IllegalArgumentException("Capacity must be greater than 0");
+        }
+        this.capacity = capacity;
     }
 
     @Override
@@ -61,21 +73,26 @@ public class PowerSource implements Fuel {
         return efficiency;
     }
 
-    @Override
-    public float getTotalDurationMinutes() {
-        return capacity*efficiency;
+    public void setEfficiency(float efficiency) {
+        if (efficiency <= 0 || efficiency > 1) {
+            throw new IllegalArgumentException("Efficiency > 0, debe ser mayor a cero");
+        }
+        this.efficiency = efficiency;
     }
+    //Utils
 
     @Override
-    public PowerType getType() {
-        return type;
+    public float getTotalDurationMinutes() {
+        return capacity * efficiency;
     }
 
     @Override
     public String toString() {
         return "PowerSource{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", type=" + type +
+                ", source=" + source +
                 ", capacity=" + capacity +
                 ", efficiency=" + efficiency +
                 '}';
