@@ -33,10 +33,16 @@ public class PowerSource implements Fuel {
 
     @Override
     public String getName() {
+
         return name;
     }
 
     public void setName(String name) {
+
+        if(name == null || name.isBlank()){
+            throw new IllegalArgumentException("name cannot be null or blank");
+        }
+
         this.name = name;
     }
 
@@ -45,6 +51,9 @@ public class PowerSource implements Fuel {
     }
 
     public void setType(PowerType type) {
+        if(type == null){
+            throw new IllegalArgumentException("type cannot be null");
+        }
         this.type = type;
     }
 
@@ -53,6 +62,10 @@ public class PowerSource implements Fuel {
     }
 
     public void setSource(PowerSourceType source) {
+        if(source == null)
+        {
+            throw new IllegalArgumentException("source cannot be null");
+        }
         this.source = source;
     }
 

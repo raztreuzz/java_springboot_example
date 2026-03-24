@@ -41,6 +41,9 @@ public class Resource {
     }
 
     public void setType(ResourceType type) {
+        if(type == null){
+            throw new IllegalArgumentException("type cannot be null");
+        }
         this.type = type;
     }
 
